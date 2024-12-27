@@ -4,6 +4,7 @@
 import { useRouter, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import { TENANT_ID } from "../../TodoList/TodoList";
 import "../items.styles.css";
 
 type TodoItem = {
@@ -14,11 +15,12 @@ type TodoItem = {
   imageUrl?: string;
 };
 
-const API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_TENANT_ID}`;
-
 export default function itemDetails() {
   const router = useRouter();
   const { itemId } = useParams(); // 동적 경로에서 itemId 가져오기
+
+  // API URL
+  const API_URL = `https://assignment-todolist-api.vercel.app/api/${TENANT_ID}/items`;
 
   const [todo, setTodo] = useState<TodoItem | null>(null);
   const [memo, setMemo] = useState("");

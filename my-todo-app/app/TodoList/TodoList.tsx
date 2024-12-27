@@ -13,13 +13,16 @@ export type TodoItem = {
   imageUrl?: string;
 };
 
-const API_URL = `${process.env.NEXT_PUBLIC_BASE_URL}/${process.env.NEXT_PUBLIC_TENANT_ID}`;
+export const TENANT_ID = "hihajin";
 
 export default function TodoList() {
   const router = useRouter();
   const [task, setTask] = useState(""); // 입력된 할 일을 관리
   const [todos, setTodos] = useState<TodoItem[]>([]); // todo와 done 목록 관리
   const [isSmallScreen, setIsSmallScreen] = useState(false);
+
+  // API URL
+  const API_URL = `https://assignment-todolist-api.vercel.app/api/${TENANT_ID}/items`;
 
   // 데이터 로드 (GET 요청)
   useEffect(() => {
