@@ -33,7 +33,7 @@ export default function itemDetails() {
     const fetchTodo = async () => {
       try {
         // Fetch 호출
-        const response = await fetch(`${API_URL}/items/${itemId}`);
+        const response = await fetch(`${API_URL}/${itemId}`);
         if (!response.ok) {
           throw new Error(
             `Failed to fetch item: ${response.status} ${response.statusText}`
@@ -116,7 +116,7 @@ export default function itemDetails() {
       });
 
       // 서버에 수정 요청
-      const response = await fetch(`${API_URL}/items/${itemId}`, {
+      const response = await fetch(`${API_URL}/${itemId}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -144,7 +144,7 @@ export default function itemDetails() {
   // 데이터 삭제
   const handleDelete = async () => {
     try {
-      const response = await fetch(`${API_URL}/items/${itemId}`, {
+      const response = await fetch(`${API_URL}/${itemId}`, {
         method: "DELETE",
       });
       if (!response.ok) throw new Error("Failed to delete item");
@@ -168,7 +168,7 @@ export default function itemDetails() {
       setTodo({ ...todo, isCompleted: updatedIsCompleted });
 
       // 서버에 상태 업데이트 요청 (PATCH)
-      const response = await fetch(`${API_URL}/items/${itemId}`, {
+      const response = await fetch(`${API_URL}/${itemId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
